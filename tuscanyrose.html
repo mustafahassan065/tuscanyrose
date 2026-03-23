@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuscanyrose — Luxury Watch Trading Community | 30+ Years Experience | $20/Month</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Cutive+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#f7f4ee;color:#3a3028;font-family:'Josefin Sans',sans-serif;overflow-x:hidden}
+.font-serif{font-family:'EB Garamond',serif}
+.font-mono{font-family:'Cutive Mono',monospace}
+
+/* Palette */
+:root{
+  --bg:#f7f4ee; --parchment:#ede8dc; --cream:#faf7f0;
+  --navy:#0f1c2e; --navyl:#162540; --navyd:#080f1a;
+  --gold:#b8922a; --goldl:#d4aa40; --goldd:#8a6e1e;
+  --rose:#9e6b6b; --rosел:#b88080;
+  --border:#d4ccb8; --muted:#7a7060; --text:#3a3028;
+  --white:#fdfbf7;
+}
+
+/* Linen texture */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0
+}
+
+/* Gold rules */
+.rule-gold{height:1px;background:linear-gradient(90deg,transparent,#b8922a,transparent)}
+.rule-thin{height:1px;background:rgba(184,146,42,.25)}
+.rule-v{width:1px;background:linear-gradient(to bottom,transparent,#b8922a,transparent)}
+
+/* Marquee */
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-anim{animation:ticker 40s linear infinite}
+
+/* Float */
+@keyframes watch-sway{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(.5deg) translateY(-8px)}}
+.watch-sway{animation:watch-sway 6s ease infinite}
+.watch-sway-d{animation:watch-sway 7s ease 1s infinite}
+
+/* Reveal */
+.rev{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rev.vis{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* Card hover */
+.ch{transition:transform .25s,box-shadow .25s}
+.ch:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(15,28,46,.12)}
+
+/* Watch face animation */
+@keyframes tick-second{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.tick-s{animation:tick-second 60s linear infinite;transform-origin:50% 80%}
+
+/* Gold shimmer text */
+.text-gold-shim{
+  background:linear-gradient(90deg,#8a6e1e,#d4aa40,#b8922a,#8a6e1e);
+  background-size:250% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gold-shim 6s linear infinite
+}
+@keyframes gold-shim{to{background-position:250% center}}
+
+/* Hamburger */
+#mob-menu{display:none;flex-direction:column;background:#f7f4ee;border-top:1px solid #d4ccb8;padding:16px 20px;gap:4px}
+#mob-menu.open{display:flex}
+#hl1,#hl2,#hl3{transition:transform .25s,opacity .25s;transform-origin:center}
+.ham-open #hl1{transform:translateY(7px) rotate(45deg)}
+.ham-open #hl2{opacity:0;transform:scaleX(0)}
+.ham-open #hl3{transform:translateY(-7px) rotate(-45deg)}
+
+/* Tag styles */
+.tag-navy{background:#0f1c2e;color:#d4aa40;font-family:'Cutive Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:2px;display:inline-block}
+.tag-gold{background:#b8922a;color:#faf7f0;font-family:'Cutive Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:2px;display:inline-block}
+.tag-outline{border:1.5px solid rgba(184,146,42,.4);color:#b8922a;font-family:'Cutive Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:2px;display:inline-block}
+
+/* Watch dial SVG */
+.watch-shine{
+  background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.02) 100%);
+}
+
+/* Dotted timeline */
+.timeline-dot{width:10px;height:10px;background:#b8922a;border-radius:50%;border:2px solid #f7f4ee;box-shadow:0 0 0 2px #b8922a;flex-shrink:0;margin-top:4px}
+</style>
+</head>
+<body style="background:#f7f4ee">
+
+<!-- TOP STRIP -->
+<div style="background:#0f1c2e;border-bottom:1px solid rgba(184,146,42,.2);padding:9px 0;overflow:hidden">
+  <div class="ticker-anim flex gap-16 w-max items-center">
+    <div class="flex items-center gap-12 whitespace-nowrap">
+      <span class="font-serif italic text-[#d4aa40] text-sm">✦ Tuscanyrose</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-mono text-xs text-white/40 tracking-widest uppercase">Luxury Watch Trading · 30+ Years Experience</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-serif italic text-[#d4aa40] text-sm">Wholesale Prices · Dealer Network · Safe Community</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-mono text-xs text-white/40 tracking-widest uppercase">$20/Month · 50% Affiliate · 4.5★ · 49 Reviews</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-serif italic text-[#d4aa40] text-sm">Rolex · Patek · AP · Audemars · IWC</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+    </div>
+    <div class="flex items-center gap-12 whitespace-nowrap">
+      <span class="font-serif italic text-[#d4aa40] text-sm">✦ Tuscanyrose</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-mono text-xs text-white/40 tracking-widest uppercase">Luxury Watch Trading · 30+ Years Experience</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-serif italic text-[#d4aa40] text-sm">Wholesale Prices · Dealer Network · Safe Community</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-mono text-xs text-white/40 tracking-widest uppercase">$20/Month · 50% Affiliate · 4.5★ · 49 Reviews</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+      <span class="font-serif italic text-[#d4aa40] text-sm">Rolex · Patek · AP · Audemars · IWC</span>
+      <span class="font-mono text-[#d4aa40]/20 text-sm">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-[#f7f4ee]/95 backdrop-blur-md" style="border-bottom:1px solid #d4ccb8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 h-[72px] flex items-center justify-between">
+
+    <a href="#" class="flex items-center gap-3 no-underline flex-shrink-0">
+      <!-- Watch logo icon -->
+      <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:#0f1c2e;box-shadow:0 2px 8px rgba(15,28,46,.3)">
+        <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
+          <circle cx="16" cy="16" r="11" stroke="#d4aa40" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="8" stroke="#d4aa40" stroke-width=".8" opacity=".4"/>
+          <line x1="16" y1="8" x2="16" y2="16" stroke="#d4aa40" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="16" y1="16" x2="21" y2="16" stroke="#d4aa40" stroke-width=".9" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="1.2" fill="#d4aa40"/>
+        </svg>
+      </div>
+      <div>
+        <div class="font-serif font-semibold text-[#0f1c2e] text-xl leading-none italic tracking-wide">Tuscanyrose</div>
+        <div class="font-mono text-[8px] text-[#b8922a] tracking-widest uppercase mt-0.5">Luxury Watch Trading</div>
+      </div>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8 list-none">
+      <li><a href="#about"   class="font-mono text-xs text-[#7a7060] hover:text-[#0f1c2e] transition-colors no-underline uppercase tracking-widest">About</a></li>
+      <li><a href="#what"    class="font-mono text-xs text-[#7a7060] hover:text-[#0f1c2e] transition-colors no-underline uppercase tracking-widest">What's Inside</a></li>
+      <li><a href="#watches" class="font-mono text-xs text-[#7a7060] hover:text-[#0f1c2e] transition-colors no-underline uppercase tracking-widest">Watches</a></li>
+      <li><a href="#reviews" class="font-mono text-xs text-[#7a7060] hover:text-[#0f1c2e] transition-colors no-underline uppercase tracking-widest">Reviews</a></li>
+      <li><a href="#pricing" class="font-mono text-xs text-[#7a7060] hover:text-[#0f1c2e] transition-colors no-underline uppercase tracking-widest">Pricing</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab"
+         class="hidden lg:inline-flex items-center gap-2 text-[#d4aa40] font-semibold text-sm px-5 py-2.5 rounded transition-all no-underline"
+         style="background:#0f1c2e;box-shadow:0 2px 10px rgba(15,28,46,.25);letter-spacing:.08em">
+        Join the Collective
+      </a>
+      <button id="ham-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded hover:bg-[#ede8dc] transition-colors" aria-label="Toggle menu" aria-expanded="false">
+        <span id="hl1" class="block w-6 h-0.5 bg-[#0f1c2e] rounded-full"></span>
+        <span id="hl2" class="block w-6 h-0.5 bg-[#0f1c2e] rounded-full"></span>
+        <span id="hl3" class="block w-6 h-0.5 bg-[#0f1c2e] rounded-full"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mob-menu" role="navigation">
+    <a href="#about"   class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">About</a>
+    <a href="#what"    class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">What's Inside</a>
+    <a href="#watches" class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">Watches</a>
+    <a href="#reviews" class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">Reviews</a>
+    <a href="#pricing" class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">Pricing</a>
+    <a href="#faq"     class="mob-lnk font-mono text-xs text-[#3a3028] hover:text-[#b8922a] uppercase tracking-widest py-3 px-3 rounded hover:bg-[#ede8dc] transition-colors no-underline">FAQ</a>
+    <div style="border-top:1px solid #d4ccb8;padding-top:16px;margin-top:8px;display:flex;flex-direction:column;gap:10px">
+      <a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab"
+         class="mob-lnk block text-center text-[#d4aa40] font-semibold text-sm px-5 py-3.5 rounded no-underline"
+         style="background:#0f1c2e;letter-spacing:.08em">
+        Join Tuscanyrose — $20/month
+      </a>
+      <a href="https://whop.com/tuscanyrose?a=digitalartlab"
+         class="mob-lnk block text-center text-[#b8922a] font-mono text-xs px-5 py-3 rounded no-underline uppercase tracking-widest"
+         style="border:1px solid rgba(184,146,42,.3)">
+        View on Whop →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative overflow-hidden" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px">
+  <!-- BG image -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1800&q=70&auto=format&fit=crop"
+         alt="" class="w-full h-full object-cover" style="filter:saturate(.4) brightness(.85)">
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(247,244,238,.97) 0%,rgba(247,244,238,.88) 50%,rgba(237,232,220,.92) 100%)"></div>
+  </div>
+  <!-- Gold glow top right -->
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none" style="background:radial-gradient(ellipse,rgba(184,146,42,.08) 0%,transparent 65%);transform:translate(20%,-20%)"></div>
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+      <!-- LEFT -->
+      <div>
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-4 mb-10 rev">
+          <div class="h-px w-8" style="background:#b8922a"></div>
+          <span class="font-mono text-[10px] text-[#b8922a] tracking-widest uppercase">Est. · Luxury Watch Collective · 30+ Years Experience</span>
+        </div>
+
+        <h1 class="font-serif font-bold text-[#0f1c2e] leading-none mb-3 rev" style="font-size:clamp(3rem,8vw,7.5rem);line-height:.9">
+          Where Serious<br>
+          Watch Traders<br>
+          <em class="text-gold-shim italic">Gather.</em>
+        </h1>
+
+        <div class="rule-gold mb-7 rev" style="max-width:480px"></div>
+
+        <p class="text-[#7a7060] text-base lg:text-lg leading-relaxed mb-8 max-w-xl font-light rev" style="font-family:'Josefin Sans',sans-serif">
+          Tuscanyrose is the premier luxury watch trading community — built by a team with over <strong class="text-[#3a3028] font-semibold">30 years of combined industry experience</strong>. Access wholesale prices, connect with serious dealers worldwide, learn the art of watch investing, and join a community praised for its <strong class="text-[#b8922a] font-semibold">safety, expertise, and genuine hospitality</strong>.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-10 rev">
+          <a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab"
+             class="inline-flex items-center gap-2 text-[#d4aa40] font-semibold text-base px-8 py-3.5 rounded transition-all no-underline"
+             style="background:#0f1c2e;box-shadow:0 4px 16px rgba(15,28,46,.25);letter-spacing:.06em">
+            Join the Collective — $20/month
+          </a>
+          <a href="#about"
+             class="inline-flex items-center gap-2 text-[#0f1c2e] font-semibold text-base px-8 py-3.5 rounded transition-all no-underline"
+             style="border:1.5px solid #d4ccb8;background:#fdfbf7">
+            Learn More ↓
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-5 font-mono text-xs text-[#7a7060] uppercase tracking-widest rev">
+          <div class="flex items-center gap-1.5"><span class="text-yellow-600">★★★★½</span><span>4.5 · 49 Reviews</span></div>
+          <span class="w-px h-3" style="background:#d4ccb8"></span>
+          <span>30+ Years Team Experience</span>
+          <span class="w-px h-3" style="background:#d4ccb8"></span>
+          <span class="text-[#b8922a] font-semibold">50% Affiliate</span>
+        </div>
+      </div>
+
+      <!-- RIGHT — watch display -->
+      <div class="hidden lg:flex justify-center items-center relative h-[540px]">
+
+        <!-- Main watch card -->
+        <div class="absolute right-4 top-10 watch-sway" style="width:300px">
+          <div class="rounded-2xl overflow-hidden" style="background:#fdfbf7;border:1px solid #d4ccb8;box-shadow:0 24px 60px rgba(15,28,46,.12)">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=80&auto=format&fit=crop"
+                 alt="" class="w-full h-48 object-cover" style="filter:saturate(.6) brightness(.9)">
+            <div style="padding:20px">
+              <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-2">Featured · Wholesale Access</div>
+              <div class="font-serif italic font-semibold text-[#0f1c2e] text-xl mb-1">Rolex Submariner</div>
+              <div class="font-mono text-xs text-[#7a7060]">Ref. 126610LN · 2023</div>
+              <div class="flex items-center justify-between mt-3">
+                <div>
+                  <div class="font-mono text-[9px] text-[#7a7060] line-through">Market: $14,200</div>
+                  <div class="font-serif italic font-bold text-[#b8922a] text-xl">Wholesale: $11,800</div>
+                </div>
+                <div class="rounded px-3 py-1.5" style="background:#0f1c2e">
+                  <div class="font-mono text-[9px] text-[#d4aa40] font-bold uppercase tracking-wider">Members Only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dealer network card -->
+        <div class="absolute left-0 top-20 watch-sway-d" style="width:190px">
+          <div class="rounded-xl p-5" style="background:#0f1c2e;border:1px solid rgba(184,146,42,.25);box-shadow:0 8px 30px rgba(15,28,46,.2)">
+            <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-2 font-bold">Network</div>
+            <div class="font-serif italic text-white text-lg">Global Dealer Access</div>
+            <div class="font-mono text-xs text-white/40 mt-1">Vetted · Trusted · Safe</div>
+          </div>
+        </div>
+
+        <!-- Experience badge -->
+        <div class="absolute left-5 bottom-10 rounded-xl p-5 text-center" style="width:175px;background:#fdfbf7;border:1px solid #d4ccb8;box-shadow:0 8px 30px rgba(15,28,46,.08);animation:watch-sway 7s ease 2s infinite">
+          <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-1">Team Experience</div>
+          <div class="font-serif italic font-bold text-[#0f1c2e]" style="font-size:2.8rem;line-height:1">30+</div>
+          <div class="font-mono text-[9px] text-[#7a7060] mt-1 uppercase tracking-wider">Years Combined</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 rounded-xl overflow-hidden mt-14 rev" style="border:1px solid #d4ccb8;background:#fdfbf7">
+      <div class="py-9 px-7 text-center" style="border-right:1px solid #d4ccb8">
+        <div class="font-serif italic font-bold text-[#b8922a] mb-1" style="font-size:3.5rem;line-height:1">30+</div>
+        <div class="font-mono text-[10px] text-[#7a7060] uppercase tracking-widest">Yrs Experience</div>
+      </div>
+      <div class="py-9 px-7 text-center" style="border-right:1px solid #d4ccb8">
+        <div class="font-serif italic font-bold text-[#0f1c2e] mb-1" style="font-size:3.5rem;line-height:1">4.5★</div>
+        <div class="font-mono text-[10px] text-[#7a7060] uppercase tracking-widest">Whop Rating</div>
+      </div>
+      <div class="py-9 px-7 text-center" style="border-right:1px solid #d4ccb8">
+        <div class="font-serif italic font-bold text-[#b8922a] mb-1" style="font-size:3.5rem;line-height:1">$20</div>
+        <div class="font-mono text-[10px] text-[#7a7060] uppercase tracking-widest">Per Month</div>
+      </div>
+      <div class="py-9 px-7 text-center">
+        <div class="font-serif italic font-bold text-[#0f1c2e] mb-1" style="font-size:3.5rem;line-height:1">50%</div>
+        <div class="font-mono text-[10px] text-[#7a7060] uppercase tracking-widest">Affiliate Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="py-24" id="about" style="background:#0f1c2e;border-top:1px solid rgba(184,146,42,.15)">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="rev">
+        <span class="tag-gold mb-6 inline-block">The Tuscanyrose Story</span>
+        <h2 class="font-serif font-bold text-white mb-5" style="font-size:clamp(2rem,4.5vw,4.2rem);line-height:1.05">
+          Three Decades of<br>
+          <em class="text-gold-shim">Watches, Markets,</em><br>
+          and Trusted Deals.
+        </h2>
+        <p class="text-white/50 text-base leading-relaxed mb-5 font-light">The luxury watch market is one of the most lucrative — and one of the most difficult to navigate. Fakes abound. Prices fluctuate. Finding genuine wholesale sources requires relationships built over years. The Tuscanyrose team has those relationships — and has had them for over three decades.</p>
+        <p class="text-white/50 text-base leading-relaxed mb-8 font-light">What started as a private network of watch dealers and enthusiasts has evolved into an accessible community where anyone serious about luxury watch trading can learn from the best, network with real dealers, access genuine wholesale pricing, and trade with confidence.</p>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl p-5" style="background:rgba(255,255,255,.04);border:1px solid rgba(184,146,42,.15)">
+            <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-2 font-bold">Safety First</div>
+            <div class="text-white/70 text-sm font-light leading-relaxed">Every transaction and recommendation is vetted. The Tuscanyrose community is built on trust — verified dealers only.</div>
+          </div>
+          <div class="rounded-xl p-5" style="background:rgba(184,146,42,.05);border:1px solid rgba(184,146,42,.2)">
+            <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-2 font-bold">Expert Guidance</div>
+            <div class="text-white/70 text-sm font-light leading-relaxed">30 years of experience means knowing which pieces hold value, which to avoid, and how to negotiate from a position of knowledge.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev d1">
+        <div class="relative rounded-2xl overflow-hidden" style="border:1px solid rgba(184,146,42,.25);box-shadow:0 0 60px rgba(184,146,42,.08)">
+          <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80&auto=format&fit=crop"
+               alt="" class="w-full h-80 object-cover" style="filter:saturate(.35) brightness(.55)">
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,28,46,.97) 0%,rgba(15,28,46,.5) 60%,transparent 100%)"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-7">
+            <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-2">Member · Verified Review</div>
+            <div class="font-serif italic text-white text-lg leading-snug">"Top notch and safe! This is an excellent chat group for watch enthusiasts — knowledgeable individuals eager to share expertise."</div>
+            <div class="font-mono text-xs text-white/30 mt-2">— Max Davis · Verified Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="py-28" id="what" style="background:#f7f4ee;border-top:1px solid #d4ccb8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-4 rev">
+        <div class="rule-gold mb-6"></div>
+        <span class="tag-navy mb-4 inline-block">Membership Benefits</span>
+        <h2 class="font-serif font-bold text-[#0f1c2e] mt-3" style="font-size:clamp(2rem,4vw,3.8rem);line-height:1.05">
+          Learn. Trade.<br>
+          <em>Profit.</em>
+        </h2>
+      </div>
+      <div class="lg:col-span-8 flex items-end rev d1">
+        <p class="text-[#7a7060] text-base leading-relaxed font-light max-w-2xl">Tuscanyrose combines expert education, real dealer access, and a community designed to help every member — from first-time collectors to seasoned dealers — succeed in the luxury watch market.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Education hero -->
+      <div class="lg:col-span-2 rounded-2xl overflow-hidden ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=900&q=80&auto=format&fit=crop"
+             alt="" class="w-full h-44 object-cover" style="filter:saturate(.5) brightness(.8)">
+        <div style="padding:28px">
+          <span class="tag-navy mb-4 inline-block" style="font-size:10px">Education · Core Feature</span>
+          <h3 class="font-serif font-semibold text-[#0f1c2e] text-2xl mb-3">Watch Trading Mastery</h3>
+          <p class="text-[#7a7060] text-sm leading-relaxed font-light">Learn from a team with 30+ years in the industry — identifying valuable timepieces, reading market trends, mastering authentication, understanding movement grades, and negotiating from a position of genuine expertise. Not theory. Practical knowledge from people who've done it for decades.</p>
+          <div class="flex gap-2 flex-wrap mt-4">
+            <span class="font-mono text-[10px] text-[#b8922a] border border-[#b8922a]/25 px-2.5 py-1 rounded">Authentication</span>
+            <span class="font-mono text-[10px] text-[#b8922a] border border-[#b8922a]/25 px-2.5 py-1 rounded">Market Analysis</span>
+            <span class="font-mono text-[10px] text-[#b8922a] border border-[#b8922a]/25 px-2.5 py-1 rounded">Negotiation</span>
+            <span class="font-mono text-[10px] text-[#b8922a] border border-[#b8922a]/25 px-2.5 py-1 rounded">Valuation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wholesale prices -->
+      <div class="rounded-2xl p-7 ch rev d1" style="background:#0f1c2e;border:1px solid rgba(184,146,42,.2)">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5" style="background:rgba(184,146,42,.12);border:1px solid rgba(184,146,42,.25)">💎</div>
+        <span class="tag-gold mb-4 inline-block" style="font-size:10px">Core Benefit</span>
+        <h3 class="font-serif font-semibold text-white text-2xl mb-3">Wholesale Prices</h3>
+        <p class="text-white/50 text-sm leading-relaxed font-light">Access luxury watches and jewelry at below-market wholesale prices through the Tuscanyrose dealer network. Pieces that retail for $15,000+ are regularly available to members at pricing only insiders have historically been able to access.</p>
+      </div>
+
+      <!-- Dealer network -->
+      <div class="rounded-2xl p-7 ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5" style="background:#ede8dc;border:1.5px solid #d4ccb8">🤝</div>
+        <span class="tag-outline mb-4 inline-block" style="font-size:10px">Networking</span>
+        <h3 class="font-serif font-semibold text-[#0f1c2e] text-2xl mb-3">Global Dealer Network</h3>
+        <p class="text-[#7a7060] text-sm leading-relaxed font-light">Connect with serious, verified watch dealers worldwide. The Tuscanyrose network spans multiple continents — opening sourcing channels, selling opportunities, and partnerships that take individuals years to build independently.</p>
+      </div>
+
+      <!-- Community safety -->
+      <div class="rounded-2xl p-7 ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5" style="background:#ede8dc;border:1.5px solid #d4ccb8">🔒</div>
+        <span class="tag-outline mb-4 inline-block" style="font-size:10px">Foundation</span>
+        <h3 class="font-serif font-semibold text-[#0f1c2e] text-2xl mb-3">Safe Environment</h3>
+        <p class="text-[#7a7060] text-sm leading-relaxed font-light">The luxury watch market has significant fraud risk. Tuscanyrose is built with safety as the primary concern — verified members, authenticated dealer listings, and a team that actively moderates to protect every participant from scams and fakes.</p>
+      </div>
+
+      <!-- Investment mindset -->
+      <div class="rounded-2xl p-7 ch rev d2" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5" style="background:#ede8dc;border:1.5px solid #d4ccb8">📈</div>
+        <span class="tag-outline mb-4 inline-block" style="font-size:10px">Investment</span>
+        <h3 class="font-serif font-semibold text-[#0f1c2e] text-2xl mb-3">Watches as Assets</h3>
+        <p class="text-[#7a7060] text-sm leading-relaxed font-light">Certain luxury watches outperform traditional assets. Learn which references hold and grow value over time, how to build a portfolio of horological investments, and when to buy, hold, and sell for maximum return.</p>
+      </div>
+
+      <!-- Affiliate callout -->
+      <div class="md:col-span-2 lg:col-span-3 rounded-2xl p-8 ch rev" style="background:linear-gradient(135deg,rgba(15,28,46,.95),rgba(22,37,64,.95));border:1px solid rgba(184,146,42,.2)">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div class="md:col-span-2">
+            <span class="tag-gold mb-4 inline-block" style="font-size:10px">Affiliate Programme</span>
+            <h3 class="font-serif font-semibold text-white text-3xl mb-3">Refer. Earn 50%. Every Month.</h3>
+            <p class="text-white/50 text-sm leading-relaxed font-light max-w-2xl">Tuscanyrose offers one of the most generous affiliate rates in the luxury watch space — 50% recurring commission on every member you refer. Each $20 member you bring in earns you $10 every month they remain active. Paid automatically through Whop.</p>
+          </div>
+          <div class="text-center">
+            <div class="font-serif italic font-bold text-gold-shim" style="font-size:5rem;line-height:1">50%</div>
+            <div class="font-mono text-[9px] text-white/30 uppercase tracking-widest mt-1">Recurring Commission</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WATCH BRANDS SECTION -->
+<section class="py-20" id="watches" style="background:#ede8dc;border-top:1px solid #d4ccb8;border-bottom:1px solid #d4ccb8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-12 rev">
+      <div class="rule-gold mb-6 max-w-xs mx-auto"></div>
+      <span class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest">Featured Marques</span>
+      <h2 class="font-serif font-bold text-[#0f1c2e] mt-3" style="font-size:clamp(2rem,4.5vw,4rem);line-height:1.05">
+        The Maisons We Trade.
+      </h2>
+      <p class="text-[#7a7060] text-base max-w-xl mx-auto mt-3 font-light">Tuscanyrose specialises in the world's most coveted luxury watch brands — pieces that carry value, heritage, and genuine investment potential.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+      <div class="rounded-xl py-5 px-3 text-center ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">Rolex</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Geneva · 1905</div>
+      </div>
+      <div class="rounded-xl py-5 px-3 text-center ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">Patek Philippe</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Geneva · 1839</div>
+      </div>
+      <div class="rounded-xl py-5 px-3 text-center ch rev d2" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">Audemars</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Le Brassus · 1875</div>
+      </div>
+      <div class="rounded-xl py-5 px-3 text-center ch rev d3" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">IWC</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Schaffhausen · 1868</div>
+      </div>
+      <div class="rounded-xl py-5 px-3 text-center ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">Omega</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Biel · 1848</div>
+      </div>
+      <div class="rounded-xl py-5 px-3 text-center ch rev d2" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif italic font-semibold text-[#0f1c2e] text-base mb-1">Cartier</div>
+        <div class="font-mono text-[8px] text-[#b8922a] uppercase tracking-wider">Paris · 1847</div>
+      </div>
+    </div>
+
+    <!-- Full-width image strip -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 rev">
+      <div class="rounded-2xl overflow-hidden ch" style="border:1px solid #d4ccb8">
+        <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=80&auto=format&fit=crop"
+             alt="" class="w-full h-56 object-cover" style="filter:saturate(.5) brightness(.9)">
+        <div style="background:#fdfbf7;padding:20px;border-top:1px solid #d4ccb8">
+          <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-1">Wholesale Deal · Members</div>
+          <div class="font-serif italic font-semibold text-[#0f1c2e] text-lg">Rolex GMT-Master II · 126710BLNR</div>
+          <div class="font-mono text-xs text-[#7a7060] mt-1">Market $17,500 → Wholesale available inside</div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden ch" style="border:1px solid #d4ccb8">
+        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80&auto=format&fit=crop"
+             alt="" class="w-full h-56 object-cover" style="filter:saturate(.5) brightness(.9)">
+        <div style="background:#fdfbf7;padding:20px;border-top:1px solid #d4ccb8">
+          <div class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest mb-1">Investment Grade · Members</div>
+          <div class="font-serif italic font-semibold text-[#0f1c2e] text-lg">Audemars Piguet Royal Oak · 15500ST</div>
+          <div class="font-mono text-xs text-[#7a7060] mt-1">Appreciation tracked · Full analysis inside</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="py-28" id="reviews" style="background:#fdfbf7;border-top:1px solid #d4ccb8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-14">
+      <div class="rev">
+        <div class="rule-gold mb-5" style="max-width:100px"></div>
+        <span class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest">Member Voices</span>
+        <h2 class="font-serif font-bold text-[#0f1c2e] mt-3" style="font-size:clamp(2rem,4vw,3.8rem);line-height:1.05">
+          Praised by Collectors<br><em>and Dealers Alike.</em>
+        </h2>
+      </div>
+      <div class="rev rounded-xl px-7 py-5 flex gap-7 items-center flex-shrink-0" style="background:#fdfbf7;border:1px solid #d4ccb8;box-shadow:0 4px 20px rgba(15,28,46,.06)">
+        <div class="text-center">
+          <div class="font-serif italic font-bold text-[#0f1c2e]" style="font-size:3rem;line-height:1">4.5★</div>
+          <div class="font-mono text-[9px] text-[#7a7060] mt-1 uppercase tracking-widest">49 Reviews</div>
+        </div>
+        <div class="w-px h-12" style="background:#d4ccb8"></div>
+        <div>
+          <div class="font-mono text-[9px] text-[#7a7060] uppercase tracking-widest">Whop Verified</div>
+          <div class="font-serif italic text-[#0f1c2e] text-lg mt-0.5 font-semibold">Growing</div>
+          <div class="font-mono text-[9px] text-[#b8922a] mt-1">Community ✦</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- Featured -->
+      <div class="md:col-span-2 rounded-2xl p-8 ch rev" style="background:linear-gradient(135deg,rgba(184,146,42,.05),rgba(253,251,247,1));border:1px solid rgba(184,146,42,.25)">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-serif italic font-bold text-[#d4aa40] text-sm" style="background:#0f1c2e">MD</div>
+            <div><div class="font-serif font-semibold text-[#0f1c2e] text-base">Max Davis</div><div class="font-mono text-[9px] text-[#7a7060]">Verified Member</div></div>
+          </div>
+          <span class="font-serif italic text-yellow-600 text-base font-semibold">★★★★★</span>
+        </div>
+        <p class="font-serif italic text-[#3a3028] text-lg leading-relaxed mb-4">"Top notch and safe! This is an excellent chat group for watch enthusiasts and those seeking information. It boasts a community of knowledgeable individuals who are eager to share their expertise and answer questions. The team's experience in the industry is evident in every interaction."</p>
+        <div class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(184,146,42,.08);border:1px solid rgba(184,146,42,.2)">
+          <svg class="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <span class="font-mono text-[9px] text-[#b8922a] font-bold uppercase tracking-wider">Whop Verified</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-full flex items-center justify-center font-serif italic font-bold text-[#d4aa40] text-xs" style="background:#0f1c2e">JJ</div><div><div class="font-serif font-semibold text-[#0f1c2e] text-sm">JDJ</div><div class="font-mono text-[8px] text-[#7a7060]">Verified Member</div></div></div>
+          <span class="font-serif italic text-yellow-600 text-sm font-semibold">★★★★★</span>
+        </div>
+        <p class="font-serif italic text-[#7a7060] text-sm leading-relaxed">"Glad to be part of the group! The wholesale access is exactly what I needed to start building my collection at prices I couldn't find anywhere else. The team's authenticity and genuine care for members is rare in this space."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.15)"><svg class="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-[9px] text-[#b8922a] font-bold uppercase tracking-wider">Verified</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-full flex items-center justify-center font-serif italic font-bold text-[#d4aa40] text-xs" style="background:#0f1c2e">CW</div><div><div class="font-serif font-semibold text-[#0f1c2e] text-sm">Collector Member</div><div class="font-mono text-[8px] text-[#7a7060]">Watch enthusiast</div></div></div>
+          <span class="font-serif italic text-yellow-600 text-sm font-semibold">★★★★½</span>
+        </div>
+        <p class="font-serif italic text-[#7a7060] text-sm leading-relaxed">"The education alone is worth the $20. Understanding which references appreciate, how to authenticate properly, and having a network of people who know the market deeply — this is the knowledge that used to require years of expensive mistakes to acquire."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.15)"><svg class="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-[9px] text-[#b8922a] font-bold uppercase tracking-wider">Verified</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-full flex items-center justify-center font-serif italic font-bold text-[#d4aa40] text-xs" style="background:#0f1c2e">NI</div><div><div class="font-serif font-semibold text-[#0f1c2e] text-sm">New Investor</div><div class="font-mono text-[8px] text-[#7a7060]">First luxury purchase</div></div></div>
+          <span class="font-serif italic text-yellow-600 text-sm font-semibold">★★★★★</span>
+        </div>
+        <p class="font-serif italic text-[#7a7060] text-sm leading-relaxed">"I came in knowing almost nothing about the watch market. The community welcomed me, answered every question patiently, and the wholesale access helped me make my first Rolex purchase at a price I couldn't believe was real. Incredible value for $20."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.15)"><svg class="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-[9px] text-[#b8922a] font-bold uppercase tracking-wider">Verified</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d2" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-full flex items-center justify-center font-serif italic font-bold text-[#d4aa40] text-xs" style="background:#0f1c2e">DE</div><div><div class="font-serif font-semibold text-[#0f1c2e] text-sm">Dealer Member</div><div class="font-mono text-[8px] text-[#7a7060]">Professional seller</div></div></div>
+          <span class="font-serif italic text-yellow-600 text-sm font-semibold">★★★★★</span>
+        </div>
+        <p class="font-serif italic text-[#7a7060] text-sm leading-relaxed">"As someone who already deals in watches professionally, Tuscanyrose has still added value — mainly through the network. Connections to dealers I wouldn't have found on my own, and a community that takes safety seriously. Rare to find at this price point."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.15)"><svg class="w-3 h-3 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-[9px] text-[#b8922a] font-bold uppercase tracking-wider">Verified</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="py-28" id="pricing" style="background:#f7f4ee;border-top:1px solid #d4ccb8">
+  <div class="max-w-4xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-14 rev">
+      <div class="rule-gold mb-6 max-w-xs mx-auto"></div>
+      <span class="font-mono text-[9px] text-[#b8922a] uppercase tracking-widest">Membership</span>
+      <h2 class="font-serif font-bold text-[#0f1c2e] mt-3" style="font-size:clamp(2rem,4.5vw,4rem);line-height:1.05">
+        Accessible to All<br>
+        <em>Serious Collectors.</em>
+      </h2>
+      <p class="text-[#7a7060] text-base max-w-xl mx-auto mt-3 font-light">$20/month for access to 30+ years of industry knowledge, wholesale pricing, and a global dealer network.</p>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden rev" style="border:1px solid #d4ccb8;box-shadow:0 8px 40px rgba(15,28,46,.08)">
+      <!-- Navy header -->
+      <div style="background:#0f1c2e;padding:36px 44px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;justify-content:space-between">
+        <div>
+          <div class="font-mono text-[9px] text-[#b8922a]/60 uppercase tracking-widest mb-2">Tuscanyrose · Full Membership</div>
+          <div class="font-serif italic font-bold" style="font-size:5.5rem;line-height:1;background:linear-gradient(135deg,#8a6e1e,#d4aa40);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">$20</div>
+          <div class="font-mono text-sm text-white/30 mt-1">/ month · cancel anytime via Whop</div>
+        </div>
+        <div class="text-right">
+          <div class="font-mono text-[9px] text-white/25 uppercase tracking-widest mb-1">Affiliate Rate</div>
+          <div class="font-serif italic font-bold text-[#d4aa40]" style="font-size:4rem;line-height:1">50%</div>
+          <div class="font-mono text-xs text-white/25 mt-0.5">recurring commission</div>
+        </div>
+      </div>
+
+      <!-- Feature list -->
+      <div style="background:#fdfbf7;padding:36px 44px">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Luxury watch education (30+ years experience)
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Wholesale pricing on Rolex, Patek, AP + more
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Global dealer network (verified, trusted)
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Authentication expertise + identification guides
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Market trend analysis + investment insights
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Safe, vetted community environment
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Jewelry access + wholesale pricing
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            <span><strong class="text-[#b8922a]">50% affiliate commission</strong> — highest available</span>
+          </div>
+          <div class="flex gap-3 items-start text-sm font-light text-[#3a3028]">
+            <svg class="w-4 h-4 text-[#b8922a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Cancel anytime · No commitment
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab"
+             class="flex-1 block text-center text-[#d4aa40] font-semibold text-base px-6 py-4 rounded no-underline transition-all"
+             style="background:#0f1c2e;box-shadow:0 4px 14px rgba(15,28,46,.2);letter-spacing:.06em">
+            Join Tuscanyrose — $20/month
+          </a>
+          <a href="https://whop.com/tuscanyrose?a=digitalartlab"
+             class="block text-center text-[#b8922a] font-mono text-xs px-6 py-4 rounded no-underline transition-all uppercase tracking-widest"
+             style="border:1px solid rgba(184,146,42,.3)">
+            View on Whop →
+          </a>
+        </div>
+        <p class="text-center font-mono text-[9px] mt-4 text-[#7a7060] uppercase tracking-widest">$20/month · Cancel anytime · 50% affiliate commission · Managed via Whop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24" id="faq" style="background:#ede8dc;border-top:1px solid #d4ccb8">
+  <div class="max-w-4xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-12 rev">
+      <span class="tag-outline mb-5 inline-block">Questions</span>
+      <h2 class="font-serif font-bold text-[#0f1c2e]" style="font-size:clamp(2rem,4vw,3.8rem);line-height:1.05">
+        <em>Answered with Care.</em>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="rounded-2xl p-6 ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif font-semibold text-[#0f1c2e] text-base mb-3">Is this for beginners or experts?</div>
+        <div class="text-[#7a7060] text-sm leading-relaxed font-light">Both. Complete beginners benefit from the education, community knowledge, and the ability to make their first purchases safely with expert guidance. Experienced dealers benefit primarily from the network access and wholesale pricing they can access through established Tuscanyrose dealer relationships.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif font-semibold text-[#0f1c2e] text-base mb-3">How does wholesale pricing work?</div>
+        <div class="text-[#7a7060] text-sm leading-relaxed font-light">Inside the community, verified dealer members list watches at below-market wholesale pricing. You connect directly with sellers, and the community's safety standards and vetting process protect all parties. The team's 30+ year relationships enable pricing not publicly available.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif font-semibold text-[#0f1c2e] text-base mb-3">How is safety maintained?</div>
+        <div class="text-[#7a7060] text-sm leading-relaxed font-light">The luxury watch market has significant fraud risk — counterfeit pieces, bad actors, inflated pricing. Tuscanyrose actively vets members and dealers, provides authentication guidance, and operates as a safe space where the team's experience protects you from the common pitfalls of the grey market.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fdfbf7;border:1px solid #d4ccb8">
+        <div class="font-serif font-semibold text-[#0f1c2e] text-base mb-3">How does the 50% affiliate work?</div>
+        <div class="text-[#7a7060] text-sm leading-relaxed font-light">Tuscanyrose offers 50% recurring commission on every member you refer — one of the highest rates in the luxury goods community space. Each $20 member you bring in earns you $10/month for as long as they remain subscribed. Paid automatically through Whop.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-36 relative overflow-hidden" style="background:#0f1c2e">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1800&q=40&auto=format&fit=crop"
+         alt="" class="w-full h-full object-cover" style="filter:saturate(.2) brightness(.1)">
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(15,28,46,.99),rgba(22,37,64,.95))"></div>
+  </div>
+  <!-- Gold glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full pointer-events-none" style="background:radial-gradient(ellipse,rgba(184,146,42,.08) 0%,transparent 65%)"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-5 text-center">
+    <div class="rule-gold mb-8 max-w-xs mx-auto"></div>
+    <div class="font-mono text-[9px] text-[#b8922a]/60 uppercase tracking-widest mb-4">Tuscanyrose · Luxury Watch Collective</div>
+    <h2 class="font-serif font-bold text-white mb-5" style="font-size:clamp(2.5rem,7vw,7rem);line-height:.9">
+      Enter the<br>
+      <em class="text-gold-shim italic">Collector's Circle.</em>
+    </h2>
+    <div class="rule-gold mb-8 max-w-xs mx-auto"></div>
+    <p class="text-white/40 text-lg max-w-2xl mx-auto leading-relaxed mb-12 font-light">
+      Thirty years of relationships, knowledge, and trusted connections — accessible for $20/month. Whether you're building your first collection or scaling a watch business, Tuscanyrose opens doors that take decades to find on your own.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center mb-12">
+      <a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab"
+         class="inline-flex items-center gap-2 text-[#d4aa40] font-semibold text-base px-10 py-5 rounded transition-all no-underline"
+         style="background:transparent;border:1.5px solid rgba(184,146,42,.5);box-shadow:0 8px 28px rgba(0,0,0,.4);letter-spacing:.06em">
+        Join Tuscanyrose — $20/month
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://whop.com/tuscanyrose?a=digitalartlab"
+         class="inline-flex items-center gap-2 text-white/40 font-mono text-xs px-10 py-5 rounded transition-all no-underline uppercase tracking-widest"
+         style="border:1px solid rgba(255,255,255,.08)">
+        View on Whop →
+      </a>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-5 font-mono text-[9px] text-white/20 uppercase tracking-widest">
+      <span>$20/month</span><span>·</span><span>Cancel anytime</span><span>·</span><span>50% affiliate</span><span>·</span><span>30+ yrs experience</span><span>·</span><span>4.5★ Whop</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#080f1a;border-top:1px solid rgba(184,146,42,.1);padding:56px 0 32px">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background:#162540;border:1px solid rgba(184,146,42,.2)">
+            <svg viewBox="0 0 32 32" width="20" height="20" fill="none"><circle cx="16" cy="16" r="11" stroke="#b8922a" stroke-width="1.5"/><line x1="16" y1="8" x2="16" y2="16" stroke="#b8922a" stroke-width="1.2" stroke-linecap="round"/><line x1="16" y1="16" x2="21" y2="16" stroke="#b8922a" stroke-width=".9" stroke-linecap="round"/><circle cx="16" cy="16" r="1.2" fill="#b8922a"/></svg>
+          </div>
+          <div><div class="font-serif italic font-semibold text-white text-lg leading-none tracking-wide">Tuscanyrose</div><div class="font-mono text-[8px] text-[#b8922a]/40 uppercase tracking-widest mt-0.5">Luxury Watch Trading</div></div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5 max-w-xs font-light" style="color:rgba(255,255,255,.25)">Premier luxury watch trading community. 30+ years of combined industry experience. Wholesale prices. Global dealer network.</p>
+        <a href="https://whop.com/tuscanyrose?a=digitalartlab" class="w-9 h-9 rounded flex items-center justify-center font-bold text-sm no-underline inline-flex" style="background:#162540;border:1px solid rgba(184,146,42,.15);color:rgba(255,255,255,.25)">W</a>
+      </div>
+      <div>
+        <div class="font-mono text-[8px] uppercase tracking-widest mb-5" style="color:rgba(184,146,42,.3)">Membership</div>
+        <ul class="space-y-3 list-none">
+          <li><a href="https://whop.com/tuscanyrose/tuscanyrose?a=digitalartlab" class="text-sm no-underline font-light" style="color:rgba(255,255,255,.25)">Join — $20/month</a></li>
+          <li><a href="https://whop.com/tuscanyrose?a=digitalartlab" class="text-sm no-underline font-light" style="color:rgba(255,255,255,.25)">View on Whop</a></li>
+          <li><a href="#pricing" class="text-sm no-underline font-light" style="color:rgba(255,255,255,.25)">Pricing</a></li>
+          <li><a href="#reviews" class="text-sm no-underline font-light" style="color:rgba(255,255,255,.25)">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-mono text-[8px] uppercase tracking-widest mb-5" style="color:rgba(184,146,42,.3)">Features</div>
+        <ul class="space-y-3 list-none">
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">Watch Education</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">Wholesale Prices</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">Global Dealer Network</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">50% Affiliate</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-mono text-[8px] uppercase tracking-widest mb-5" style="color:rgba(184,146,42,.3)">Marques</div>
+        <ul class="space-y-3 list-none">
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">Rolex · Patek Philippe</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">Audemars Piguet</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">IWC · Omega · Cartier</span></li>
+          <li><span class="text-sm font-light" style="color:rgba(255,255,255,.25)">+ Fine Jewellery</span></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(184,146,42,.08);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px">
+      <p class="font-mono text-[8px] uppercase tracking-widest" style="color:rgba(184,146,42,.15)">© 2026 Tuscanyrose · All rights reserved</p>
+      <p class="font-mono text-[8px] max-w-lg leading-relaxed uppercase tracking-wider" style="color:rgba(255,255,255,.08)">Tuscanyrose is an independent luxury watch trading community. All transactions are between individual members. Past performance of watch investments is not indicative of future results. Always conduct due diligence before purchasing.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const hb=document.getElementById('ham-btn'),mm=document.getElementById('mob-menu'),ml=document.querySelectorAll('.mob-lnk');
+function tog(fc=false){const o=mm.classList.contains('open');if(fc||o){mm.classList.remove('open');hb.classList.remove('ham-open');hb.setAttribute('aria-expanded','false')}else{mm.classList.add('open');hb.classList.add('ham-open');hb.setAttribute('aria-expanded','true')}}
+hb.addEventListener('click',()=>tog());
+ml.forEach(l=>l.addEventListener('click',()=>tog(true)));
+document.addEventListener('click',e=>{if(!document.querySelector('nav').contains(e.target))tog(true)});
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -10px 0px'});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+window.addEventListener('load',()=>{document.querySelectorAll('.rev:not(.vis)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('vis')})});
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>60?'0 4px 20px rgba(15,28,46,.15)':'none'});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-74,behavior:'smooth'})}})});
+</script>
+</body>
+</html>
